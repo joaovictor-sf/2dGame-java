@@ -50,7 +50,7 @@ public class GamePanel extends JPanel implements Runnable{
     final int SCREEN_HEIGHT = TILE_SIZE * MAX_SCREEN_ROWS; // 48 * 12 = 576 pixels
 
     // FPS
-    int fps = 60;
+    final int FPS = 60;
 
     /**
      * <p>Thread that will run the game loop.</p>
@@ -78,40 +78,32 @@ public class GamePanel extends JPanel implements Runnable{
         gameThread.start();// Start the game loop automatically calling the run method
     }
 
-    @Override
-    public void run() {
-
-        double drawInterval = 1000000000 / fps;// 16.666666666666668 ms or 0.016666666666666668 seconds
-        double nextDrawTime = System.nanoTime() + drawInterval;
-        double remainingTimeToDraw;
+    public void run(){
+        double drawInterval = 1000000000 / FPS;
+        double delta = 0;
+        long lastTime = System.nanoTime();
+        long currentTime;
+        long timer = 0;
+        int drawCount = 0;
 
         while (gameThread != null) {
+            currentTime = System.nanoTime();
 
-            // 1. UPDATE: update information sunch as player position, npc position, etc.
-            update();
+            delta += (currentTime - lastTime) / drawInterval;
+            timer += (currentTime - lastTime);
+            lastTime = currentTime;
 
-            // 2. DRAW: draw the game screen with the updated information
-            repaint();// this will call the paintComponent method
+            if (delta >= 1) {
+                update();
+                repaint();
+                delta--;
+                drawCount++;
+            }
 
-            // 3. CONTROL FPS: control the frames per second
-            remainingTimeToDraw = nextDrawTime - System.nanoTime();
-
-            if (remainingTimeToDraw > 0) {
-                try {
-                    remainingTimeToDraw = nextDrawTime - System.nanoTime();
-                    remainingTimeToDraw /=  1000000;
-
-                    // If the update and draw process takes longer than the drawInterval, we will not sleep the thread. This will prevent the game from running slower than the desired FPS.
-                    if (remainingTimeToDraw < 0){
-                        remainingTimeToDraw = 0;
-                    }
-
-                    Thread.sleep((long) remainingTimeToDraw);// sleep the thread for the remaining time to draw. Works in milliseconds so we divide by 1,000,000
-
-                    nextDrawTime += drawInterval;// update the next draw time
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            if (timer >= 1000000000) {
+                System.out.println("FPS: " + drawCount);
+                drawCount = 0;
+                timer = 0;
             }
         }
     }
