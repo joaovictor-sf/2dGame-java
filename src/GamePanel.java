@@ -56,6 +56,9 @@ public class GamePanel extends JPanel implements Runnable{
      * <p>Thread that will run the game loop.</p>
      */
     Thread gameThread;
+    /**
+     * <p>Handles the keyboard input.</p>
+     */
     KeyHandler keyHandler = new KeyHandler();
 
     // Player's default position
@@ -78,33 +81,34 @@ public class GamePanel extends JPanel implements Runnable{
         gameThread.start();// Start the game loop automatically calling the run method
     }
 
+    @Override
     public void run(){
-        double drawInterval = 1000000000 / FPS;
-        double delta = 0;
+        double drawInterval = 1000000000.0 / FPS;// 1 second divided by the number of frames per second
+        double delta = 0;// Time until the next frame
         long lastTime = System.nanoTime();
         long currentTime;
-        long timer = 0;
-        int drawCount = 0;
+        //long timer = 0;
+        //int drawCount = 0;
 
         while (gameThread != null) {
             currentTime = System.nanoTime();
 
             delta += (currentTime - lastTime) / drawInterval;
-            timer += (currentTime - lastTime);
+            //timer += (currentTime - lastTime);
             lastTime = currentTime;
 
             if (delta >= 1) {
                 update();
                 repaint();
                 delta--;
-                drawCount++;
+                //drawCount++;
             }
 
-            if (timer >= 1000000000) {
+            /*if (timer >= 1000000000) {
                 System.out.println("FPS: " + drawCount);
                 drawCount = 0;
                 timer = 0;
-            }
+            }*/
         }
     }
 

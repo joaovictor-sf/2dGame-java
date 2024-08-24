@@ -17,3 +17,65 @@ The game loop is composed of three parts:
 3. Sleep for a fixed amount of time
 
 And this is repeated until the game is closed.
+
+Example of a game loop:
+```java
+    public void run(){
+        double drawInterval = 1000000000.0 / FPS;
+        double delta = 0;
+        long lastTime = System.nanoTime();
+        long currentTime;
+
+        while (gameThread != null) {
+            currentTime = System.nanoTime();
+
+            delta += (currentTime - lastTime) / drawInterval;
+            lastTime = currentTime;
+
+            if (delta >= 1) {
+                update();
+                repaint();
+                delta--;
+            }
+        }
+    }
+```
+The <b>run</b> method implements the main game loop using the "Fixed Time Step" technique. Here is a detailed explanation of each part of the method:
+
+1. <b>Variable Initialization:</b>  
+```java
+double drawInterval = 1000000000.0 / FPS;
+double delta = 0;
+long lastTime = System.nanoTime();
+long currentTime;
+```
+- <b>drawInterval</b>: Defines the time interval between each frame, calculated as 1 second (in nanoseconds) divided by the number of frames per second (FPS).
+- <b>delta</b>: Accumulates the elapsed time to determine when to update and render the next frame.
+- <b>lastTime</b>: tores the time in nanoseconds of the last loop iteration.
+- <b>currentTime</b>: Stores the current time in nanoseconds. 
+
+2. <b>Main Game Loop:</b>
+
+```java
+while (gameThread != null) {
+currentTime = System.nanoTime();
+
+    delta += (currentTime - lastTime) / drawInterval;
+    lastTime = currentTime;
+
+    if (delta >= 1) {
+        update();
+        repaint();
+        delta--;
+    }
+}
+```
+- <b>currentTime = System.nanoTime()</b>: Updates the current time.
+- <b>delta += (currentTime - lastTime) / drawInterval</b>: Calculates the elapsed time since the last iteration and adds it to delta.
+- <b>lastTime = currentTime</b>: Updates lastTime to the current time.
+- <b>if (delta >= 1)</b>: Checks if delta has accumulated enough time for a frame.
+- <b>update()</b>: Updates the game logic (player position, etc.).
+- <b>repaint()</b>: Redraws the game screen.
+- <b>delta--</b>: Decrements delta to indicate that a frame has been processed.
+
+This method ensures that the game logic and rendering are updated at fixed time intervals, regardless of the frames per second (FPS)
