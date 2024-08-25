@@ -66,11 +66,6 @@ public class GamePanel extends JPanel implements Runnable{
     KeyHandler keyHandler = new KeyHandler();
     Player player = new Player(this, keyHandler);
 
-    // Player's default position
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 4;
-
     public GamePanel() {
         setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         setDoubleBuffered(true);// If true, all drawing will be done in the offscreen image buffer. The buffer will then be copied to the screen. This can reduce flicker and improve performance.

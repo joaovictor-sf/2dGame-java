@@ -1,7 +1,8 @@
 # TODO
-- Criar meu próprio sprite para o jogador.
-- Fazer possivel que o jogador se mova diagonalmente.
-- Concertar o bug que faz com que o jogador fique com a sprite de movimento quando ele para de se mover.
+- [ ] Criar meu próprio sprite para o jogador.
+- [ ] Fazer possivel que o jogador se mova diagonalmente.
+- [x] Concertar o bug que faz com que o jogador fique com a sprite de movimento quando ele para de se mover.
+- [ ] Adicionar mais dois sprites de movimentação lateral do Player.
 
 # 2DGame-java
 A 2d game made from scratch in Java with the help of the course of RyiSnow on youtube.

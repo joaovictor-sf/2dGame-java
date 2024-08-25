@@ -20,4 +20,5 @@ public class Entity {
 
     public int spriteCount = 0;
     public int spriteNum = 1;
+    public boolean isMoving;
 }

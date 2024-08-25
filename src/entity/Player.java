@@ -62,7 +62,11 @@ public class Player extends Entity{
     public void update(){
         // Remember that the origin (0,0) is at the top left corner of the screen
 
+        isMoving = false;
+
         if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed) {
+            isMoving = true;
+
             // Player movement
             if (keyHandler.upPressed) {
                 y -= speed;
@@ -99,36 +103,16 @@ public class Player extends Entity{
 
         switch (direction){
             case "up":
-                if (spriteNum == 1){
-                    image = up1;
-                }
-                else{
-                    image = up2;
-                }
+                image = spriteNum == 1 ? up1 : up2;
                 break;
             case "down":
-                if (spriteNum == 1){
-                    image = down1;
-                }
-                else{
-                    image = down2;
-                }
+                image = spriteNum == 1 ? down1 : down2;
                 break;
             case "left":
-                if (spriteNum == 1){
-                    image = left1;
-                }
-                else{
-                    image = left2;
-                }
+                image = isMoving ? (spriteNum == 1 ? left1 : left2) : left1;
                 break;
             case "right":
-                if (spriteNum == 1){
-                    image = right1;
-                }
-                else{
-                    image = right2;
-                }
+                image = isMoving ? (spriteNum == 1 ? right1 : right2) : right1;
                 break;
         }
         g2.drawImage(image, x, y, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
