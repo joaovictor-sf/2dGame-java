@@ -40,6 +40,9 @@ public class Player extends Entity{
         direction = "down";
     }
 
+    /**
+     * <p>Get the images from the player folder and put them in the variables:</p> <p>up1, up2, down1, down2, left1, left2, right1, right2.</p>
+     */
     public void getPlayerImage(){
         try{
             up1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_1.png"));
