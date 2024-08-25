@@ -1,3 +1,8 @@
+# TODO
+- Criar meu próprio sprite para o jogador.
+- Fazer possivel que o jogador se mova diagonalmente.
+- Concertar o bug que faz com que o jogador fique com a sprite de movimento quando ele para de se mover.
+
 # 2DGame-java
 A 2d game made from scratch in Java with the help of the course of RyiSnow on youtube.
 
@@ -92,3 +97,15 @@ The <b>KeyListener</b> interface defines three methods:
 - <b>keyPressed(KeyEvent e)</b>: Called when a key is pressed.
 - <b>keyReleased(KeyEvent e)</b>: Called when a key is released.
 - <b>keyTyped(KeyEvent e)</b>: Called when a key is typed (pressed and released).
+
+## Entitys
+Entitys are objects that exist in the game world. They can be characters, enemies, items, etc. In a 2D game, entities are usually represented by sprites (images).
+
+In this game, we will create a base class called <b>Entity</b> that represents a generic entity. This class will have properties such as position, velocity, and sprite.
+
+### Player
+The player is a special entity that represents the player character. It will have additional properties such as health, score, etc.
+
+Para diminuir a quantidade de código na classe GamePanel, a classe Player irá lidar com a lógica de movimento do jogador.
+
+Para desenhar o sprite do jogador, você pode ultilizar ferramentas como Paint, FotoShop, Gimp, etc. Nesse projeto em particular eu sequirei o curso e usei o PiSKEL, um software gratuito de navegador para criar sprites.
