@@ -1,3 +1,7 @@
+package main;
+
+import entity.Player;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -23,7 +27,7 @@ public class GamePanel extends JPanel implements Runnable{
      * <p>Final size of the sprite.</p>
      * <p>It is the original size of the sprite multiplied by the scale.</p>
      */
-    final int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE; // 16x16 * 3 = 48x48 pixels
+    public final int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE; // 16x16 * 3 = 48x48 pixels
     /**
      * <p>Maximum number of columns that the screen can have.</p>
      * <p>It is the width of the screen divided by the size of the sprite.</p>
@@ -60,6 +64,7 @@ public class GamePanel extends JPanel implements Runnable{
      * <p>Handles the keyboard input.</p>
      */
     KeyHandler keyHandler = new KeyHandler();
+    Player player = new Player(this, keyHandler);
 
     // Player's default position
     int playerX = 100;
@@ -113,21 +118,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void update() {
-        // Remember that the origin (0,0) is at the top left corner of the screen
-
-        // Player movement
-        if (keyHandler.upPressed) {
-            playerY -= playerSpeed;
-        }
-        if (keyHandler.downPressed) {
-            playerY += playerSpeed;
-        }
-        if (keyHandler.leftPressed) {
-            playerX -= playerSpeed;
-        }
-        if (keyHandler.rightPressed) {
-            playerX += playerSpeed;
-        }
+        player.update();
     }
 
     @Override
@@ -136,9 +127,8 @@ public class GamePanel extends JPanel implements Runnable{
         // this is a method from JPanel
 
         Graphics2D g2 = (Graphics2D) g;
+        player.draw(g2);
 
-        g2.setColor(Color.BLACK);
-        g2.fillRect(playerX, playerY, TILE_SIZE, TILE_SIZE);// Draw a rectangle.
         g2.dispose();// Disposes of this graphics context and releases any system resources that it is using.
     }
 }

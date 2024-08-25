@@ -1,7 +1,9 @@
+package main;
+
 import javax.swing.*;
 
 /**
- * It is a good practice to have a Main class that creates the JFrame and sets it visible.
+ * It is a good practice to have a main.Main class that creates the JFrame and sets it visible.
  */
 public class Main {
     public static void main(String[] args) {

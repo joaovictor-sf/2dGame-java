@@ -79,3 +79,16 @@ currentTime = System.nanoTime();
 - <b>delta--</b>: Decrements delta to indicate that a frame has been processed.
 
 This method ensures that the game logic and rendering are updated at fixed time intervals, regardless of the frames per second (FPS)
+
+### The Rendering
+The rendering is the process of drawing the game screen. The screen is composed of pixels, and each pixel has a color. The rendering process involves updating the pixels according to the game logic.
+
+The rendering process is done in the <b>paintComponent</b> method of the <b>JPanel</b> class. This method is called automatically by the Swing framework when the screen needs to be redrawn.
+
+## Key Handling
+Key handling is the process of detecting and responding to keyboard input. In Java, key handling is done using the <b>KeyListener</b> interface.
+
+The <b>KeyListener</b> interface defines three methods:
+- <b>keyPressed(KeyEvent e)</b>: Called when a key is pressed.
+- <b>keyReleased(KeyEvent e)</b>: Called when a key is released.
+- <b>keyTyped(KeyEvent e)</b>: Called when a key is typed (pressed and released).
