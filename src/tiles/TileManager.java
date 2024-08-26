@@ -4,7 +4,10 @@ import main.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class TileManager {
     GamePanel gamePanel;
@@ -12,12 +15,39 @@ public class TileManager {
      * The types of frames that can be used. The size of the array is 10, but it can be increased as needed.
      */
     Tile[] tiles;
+    int mapTileNum[][];
 
     public TileManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
 
         tiles = new Tile[3];
+        mapTileNum = new int[gamePanel.MAX_SCREEN_ROWS][gamePanel.MAX_SCREEN_COLS];
         getTileImage();
+        loadMap("/maps/map_0.txt");
+    }
+
+    public void loadMap(String filePath){
+        try {
+            InputStream inputStream = getClass().getResourceAsStream(filePath);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+            int col;
+            int row = 0;
+
+            while (row < gamePanel.MAX_SCREEN_ROWS){
+                String line = bufferedReader.readLine();
+                String[] tokens = line.split(" ");
+
+                col = 0;
+                for (String token : tokens) {
+                    mapTileNum[row][col] = Integer.parseInt(token);
+                    col++;
+                }
+                row++;
+            }
+        }catch (Exception e){
+
+        }
     }
 
     public void getTileImage(){
@@ -39,15 +69,16 @@ public class TileManager {
 
         // Fill the screen with tile 0(grass)
         while (col < gamePanel.MAX_SCREEN_COLS && row < gamePanel.MAX_SCREEN_ROWS){
-            g.drawImage(tiles[0].sprite, x, y, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
-            col++;
-            x += gamePanel.TILE_SIZE;
+            g.drawImage(tiles[mapTileNum[row][col]].sprite, x, y, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
 
-            if (col == gamePanel.MAX_SCREEN_COLS){
-                col = 0;
-                row++;
+            x += gamePanel.TILE_SIZE;
+            col++;
+
+            if (x >= gamePanel.SCREEN_WIDTH){
                 x = 0;
                 y += gamePanel.TILE_SIZE;
+                row++;
+                col = 0;
             }
         }
     }
