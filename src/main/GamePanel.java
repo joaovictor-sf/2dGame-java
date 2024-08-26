@@ -1,6 +1,7 @@
 package main;
 
-import entity.Player;
+import entities.Player;
+import tiles.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -65,6 +66,7 @@ public class GamePanel extends JPanel implements Runnable{
      */
     KeyHandler keyHandler = new KeyHandler();
     Player player = new Player(this, keyHandler);
+    TileManager tileManager = new TileManager(this);
 
     public GamePanel() {
         setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
@@ -122,6 +124,8 @@ public class GamePanel extends JPanel implements Runnable{
         // this is a method from JPanel
 
         Graphics2D g2 = (Graphics2D) g;
+
+        tileManager.draw(g2);//tiles before player
         player.draw(g2);
 
         g2.dispose();// Disposes of this graphics context and releases any system resources that it is using.

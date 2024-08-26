@@ -99,14 +99,52 @@ The <b>KeyListener</b> interface defines three methods:
 - <b>keyReleased(KeyEvent e)</b>: Called when a key is released.
 - <b>keyTyped(KeyEvent e)</b>: Called when a key is typed (pressed and released).
 
-## Entitys
-Entitys are objects that exist in the game world. They can be characters, enemies, items, etc. In a 2D game, entities are usually represented by sprites (images).
+```java
+@Override
+    public void keyPressed(KeyEvent e) {
+        int code = e.getKeyCode();// Returns the integer keyCode associated with the key in this event.
 
-In this game, we will create a base class called <b>Entity</b> that represents a generic entity. This class will have properties such as position, velocity, and sprite.
+        if (code == KeyEvent.VK_W) {
+            upPressed = true;
+        }
+        if (code == KeyEvent.VK_A) {
+            leftPressed = true;
+        }
+        if (code == KeyEvent.VK_S) {
+            downPressed = true;
+        }
+        if (code == KeyEvent.VK_D) {
+            rightPressed = true;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int code = e.getKeyCode();
+
+        if (code == KeyEvent.VK_W) {
+            upPressed = false;
+        }
+        if (code == KeyEvent.VK_A) {
+            leftPressed = false;
+        }
+        if (code == KeyEvent.VK_S) {
+            downPressed = false;
+        }
+        if (code == KeyEvent.VK_D) {
+            rightPressed = false;
+        }
+    }
+```
+
+## Entities
+Entities are objects that exist in the game world. They can be characters, enemies, items, etc. In a 2D game, entities are usually represented by sprites (images).
+
+In this game, we will create a base class called <b>Entity</b> that represents a generic entities. This class will have properties such as position, velocity, and sprite.
 
 ### Player
-The player is a special entity that represents the player character. It will have additional properties such as health, score, etc.
+The player is a special entities that represents the player character. It will have additional properties such as health, score, etc.
 
-Para diminuir a quantidade de código na classe GamePanel, a classe Player irá lidar com a lógica de movimento do jogador.
+To reduce the amount of code in the GamePanel class, the Player class will handle the player's movement logic.
 
-Para desenhar o sprite do jogador, você pode ultilizar ferramentas como Paint, FotoShop, Gimp, etc. Nesse projeto em particular eu sequirei o curso e usei o PiSKEL, um software gratuito de navegador para criar sprites.
+To draw the player's sprite, you can use tools like Paint, Photoshop, Gimp, etc. In this particular project, I followed the course and used PiSKEL, a free browser software to create sprites.
