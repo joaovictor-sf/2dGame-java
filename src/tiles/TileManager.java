@@ -32,8 +32,23 @@ public class TileManager {
     }
 
     public void draw(Graphics2D g){
-        for (int i = 0; i < tiles.length; i++) {
-            g.drawImage(tiles[i].sprite, i * 60, 0, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
+        int col = 0;
+        int row = 0;
+        int x = 0;
+        int y = 0;
+
+        // Fill the screen with tile 0(grass)
+        while (col < gamePanel.MAX_SCREEN_COLS && row < gamePanel.MAX_SCREEN_ROWS){
+            g.drawImage(tiles[0].sprite, x, y, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
+            col++;
+            x += gamePanel.TILE_SIZE;
+
+            if (col == gamePanel.MAX_SCREEN_COLS){
+                col = 0;
+                row++;
+                x = 0;
+                y += gamePanel.TILE_SIZE;
+            }
         }
     }
 }

@@ -33,26 +33,26 @@ public class GamePanel extends JPanel implements Runnable{
      * <p>Maximum number of columns that the screen can have.</p>
      * <p>It is the width of the screen divided by the size of the sprite.</p>
      */
-    final int MAX_SCREEN_COLS = 16; // 16 columns
+    public final int MAX_SCREEN_COLS = 16; // 16 columns
     /**
      * <p>Maximum number of rows that the screen can have.</p>
      * <p>It is the height of the screen divided by the size of the sprite.</p>
      */
-    final int MAX_SCREEN_ROWS = 12; // 12 rows
+    public final int MAX_SCREEN_ROWS = 12; // 12 rows
     /**
      * <p>Final width of the screen.</p>
      * <p>It is the size of the sprite multiplied by the maximum number of columns that the screen can have.</p>
      * No momento o tamanho da tela é 768x576 pixels. (48x16 * 48x12). Deixando a tela em uma escala de 4x3.
      * <p>In this case, the screen size is 768x576 pixels. (48x16 * 48x12). Leaving the screen in a 4x3 scale.</p>
      */
-    final int SCREEN_WIDTH = TILE_SIZE * MAX_SCREEN_COLS; // 48 * 16 = 768 pixels
+    public final int SCREEN_WIDTH = TILE_SIZE * MAX_SCREEN_COLS; // 48 * 16 = 768 pixels
     /**
      * <p>Final width of the screen.</p>
      * <p>It is the size of the sprite multiplied by the maximum number of columns that the screen can have.</p>
      * No momento o tamanho da tela é 768x576 pixels. (48x16 * 48x12). Deixando a tela em uma escala de 4x3.
      * <p>In this case, the screen size is 768x576 pixels. (48x16 * 48x12). Leaving the screen in a 4x3 scale.</p>
      */
-    final int SCREEN_HEIGHT = TILE_SIZE * MAX_SCREEN_ROWS; // 48 * 12 = 576 pixels
+    public final int SCREEN_HEIGHT = TILE_SIZE * MAX_SCREEN_ROWS; // 48 * 12 = 576 pixels
 
     // FPS
     final int FPS = 60;
