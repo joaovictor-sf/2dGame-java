@@ -86,10 +86,10 @@ public class Player extends Entity{
             }
 
             // Player animation
-            spriteCount++;
-            if (spriteCount == 10) {
-                spriteCount = 0;
-                spriteNum = (spriteNum == 1) ? 2 : 1;
+            animationDelay++;
+            if (animationDelay == 8) {
+                animationDelay = 0;
+                spriteVersion = (spriteVersion == 1) ? 2 : 1;
             }
         }
     }
@@ -106,16 +106,16 @@ public class Player extends Entity{
 
         switch (direction){
             case "up":
-                image = spriteNum == 1 ? up1 : up2;
+                image = spriteVersion == 1 ? up1 : up2;
                 break;
             case "down":
-                image = spriteNum == 1 ? down1 : down2;
+                image = spriteVersion == 1 ? down1 : down2;
                 break;
             case "left":
-                image = isMoving ? (spriteNum == 1 ? left1 : left2) : left1;
+                image = isMoving ? (spriteVersion == 1 ? left1 : left2) : left1;
                 break;
             case "right":
-                image = isMoving ? (spriteNum == 1 ? right1 : right2) : right1;
+                image = isMoving ? (spriteVersion == 1 ? right1 : right2) : right1;
                 break;
         }
         g2.drawImage(image, x, y, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);

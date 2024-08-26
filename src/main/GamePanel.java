@@ -65,7 +65,13 @@ public class GamePanel extends JPanel implements Runnable{
      * <p>Handles the keyboard input.</p>
      */
     KeyHandler keyHandler = new KeyHandler();
+    /**
+     * <p>Player character.</p>
+     */
     Player player = new Player(this, keyHandler);
+    /**
+     * <p>Manages the tiles.</p>
+     */
     TileManager tileManager = new TileManager(this);
 
     public GamePanel() {
