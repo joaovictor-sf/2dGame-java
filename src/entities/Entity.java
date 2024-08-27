@@ -9,7 +9,7 @@ public class Entity {
     /**
      * <p>Position of the entity on the screen.</p>
      */
-    public int x, y;
+    public int worldX, worldY;
     /**
      * <p>Speed of the entity.</p>
      */

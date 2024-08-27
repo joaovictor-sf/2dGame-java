@@ -20,10 +20,10 @@ public class TileManager {
     public TileManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
 
-        tiles = new Tile[3];
-        mapTileNum = new int[gamePanel.MAX_SCREEN_ROWS][gamePanel.MAX_SCREEN_COLS];
+        tiles = new Tile[6];
+        mapTileNum = new int[gamePanel.maxWorldRows][gamePanel.maxWorldCols];
         getTileImage();
-        loadMap("/maps/map_0.txt");
+        loadMap("/maps/world01.txt");
     }
 
     public void loadMap(String filePath){
@@ -34,7 +34,7 @@ public class TileManager {
             int col;
             int row = 0;
 
-            while (row < gamePanel.MAX_SCREEN_ROWS){
+            while (row < gamePanel.maxWorldRows){
                 String line = bufferedReader.readLine();
                 String[] tokens = line.split(" ");
 
@@ -64,14 +64,10 @@ public class TileManager {
     public void draw(Graphics2D g){
         int col = 0;
         int row = 0;
-        int x = 0;
-        int y = 0;
 
         // Fill the screen with tile 0(grass)
         while (col < gamePanel.MAX_SCREEN_COLS && row < gamePanel.MAX_SCREEN_ROWS){
             g.drawImage(tiles[mapTileNum[row][col]].sprite, x, y, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
-
-            x += gamePanel.TILE_SIZE;
             col++;
 
             if (x >= gamePanel.SCREEN_WIDTH){
