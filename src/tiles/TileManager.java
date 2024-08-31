@@ -14,8 +14,8 @@ public class TileManager {
     /**
      * The types of frames that can be used. The size of the array is 10, but it can be increased as needed.
      */
-    Tile[] tiles;
-    int mapTileNum[][];
+    public Tile[] tiles;
+    public int mapTileNum[][];
 
     public TileManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -55,6 +55,9 @@ public class TileManager {
             tiles[i] = new Tile();
             try {
                 tiles[i].sprite = ImageIO.read(getClass().getResourceAsStream("/tiles/tile_" + i + ".png"));
+                if(i == 1 || i == 2 || i == 4){
+                    tiles[i].collision = true;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

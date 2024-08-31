@@ -72,6 +72,7 @@ public class GamePanel extends JPanel implements Runnable{
      * <p>Handles the keyboard input.</p>
      */
     KeyHandler keyHandler = new KeyHandler();
+    public CollisionChecker collisionChecker = new CollisionChecker(this);
     /**
      * <p>Player character.</p>
      */

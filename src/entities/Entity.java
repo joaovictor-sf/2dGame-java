@@ -1,5 +1,6 @@
 package entities;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
@@ -7,7 +8,7 @@ import java.awt.image.BufferedImage;
  */
 public class Entity {
     /**
-     * <p>Position of the entity on the screen.</p>
+     * <p>Position of the entity on the world.</p>
      */
     public int worldX, worldY;
     /**
@@ -36,4 +37,6 @@ public class Entity {
      * Boolean com o objetivo de verificar se a entidade está em movimento.
      */
     public boolean isMoving;
+    public Rectangle solidArea;
+    public boolean collision = false;
 }
