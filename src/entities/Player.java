@@ -22,7 +22,13 @@ public class Player extends Entity{
      */
     KeyHandler keyHandler;
 
+    /**
+     * <p>Player's position in the screen.</p>
+     */
     public final int screenX;
+    /**
+     * <p>Player's position in the screen.</p>
+     */
     public final int screenY;
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {

@@ -2,13 +2,26 @@ package main;
 
 import entities.Entity;
 
+/**
+ * CollisionChecker class checks if an entity collides with a tile.
+ * If the entity collides with a tile, the entity's collision variable is set to true.
+ * The entity's collision variable is used to determine if the entity can move in a certain direction.
+ */
 public class CollisionChecker {
+    /**
+     * The GamePanel object that contains the tileManager object.
+     */
     GamePanel gamePanel;
 
     public CollisionChecker(GamePanel gamePanel){
         this.gamePanel = gamePanel;
     }
 
+    /**
+     * Checks if an entity collides with a tile.
+     * If the entity collides with a tile, the entity's collision variable is set to true.
+     * @param entity The entity to check for collision with a tile.
+     */
     public void checkTile(Entity entity){
         int entityLeftWorldX = entity.worldX + entity.solidArea.x;
         int entityRightWorldX = entity.worldX + entity.solidArea.x + entity.solidArea.width;

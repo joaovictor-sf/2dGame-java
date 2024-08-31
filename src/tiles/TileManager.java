@@ -9,12 +9,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+/**
+ * The TileManager class is responsible for loading the tile images and drawing them on the screen.
+ * It also loads the map from a text file and stores the tile numbers in a 2D array.
+ */
 public class TileManager {
+    /**
+     * The GamePanel object.
+     */
     GamePanel gamePanel;
     /**
      * The types of frames that can be used. The size of the array is 10, but it can be increased as needed.
      */
     public Tile[] tiles;
+    /**
+     * A 2D array that stores the tile numbers of the map.
+     */
     public int mapTileNum[][];
 
     public TileManager(GamePanel gamePanel) {
@@ -26,6 +36,10 @@ public class TileManager {
         loadMap("/maps/world01.txt");
     }
 
+    /**
+     * Loads the map from a text file and stores the tile numbers in a 2D array.
+     * @param filePath The path of the text file.
+     */
     public void loadMap(String filePath){
         try {
             InputStream inputStream = getClass().getResourceAsStream(filePath);
@@ -50,6 +64,9 @@ public class TileManager {
         }
     }
 
+    /**
+     * Loads the tile images from the resources folder.
+     */
     public void getTileImage(){
         for (int i = 0; i < tiles.length; i++) {
             tiles[i] = new Tile();
@@ -64,6 +81,10 @@ public class TileManager {
         }
     }
 
+    /**
+     * Draws the tiles on the screen.
+     * @param g The Graphics2D object.
+     */
     public void draw(Graphics2D g){
     	int worldCol = 0;
 		int worldRow = 0;

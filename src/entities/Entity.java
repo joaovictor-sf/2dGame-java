@@ -37,6 +37,13 @@ public class Entity {
      * Boolean com o objetivo de verificar se a entidade está em movimento.
      */
     public boolean isMoving;
+
+    /**
+     * <p>Rectangle that represents the solid area of the entity.</p>
+     */
     public Rectangle solidArea;
+    /**
+     * <p>If the entity is colliding with another entity.</p>
+     */
     public boolean collision = false;
 }

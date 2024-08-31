@@ -56,9 +56,23 @@ public class GamePanel extends JPanel implements Runnable{
 
     //World Settings
     // O mapa é 50x50
+    /**
+     * <p>The maximum number of columns that the world can have.</p>
+     */
     public final int maxWorldCols = 50;
+    /**
+     * <p>The maximum number of rows that the world can have.</p>
+     */
     public final int maxWorldRows = 50;
+    /**
+     * <p>Final width of the world.</p>
+     * <p>It is the size of the sprite multiplied by the maximum number of columns that the world can have.</p>
+     */
     public final int worldWidth = TILE_SIZE * maxWorldCols;
+    /**
+     * <p>Final height of the world.</p>
+     * <p>It is the size of the sprite multiplied by the maximum number of rows that the world can have.</p>
+     */
     public final int worldHeight = TILE_SIZE * maxWorldRows;
 
     // FPS
@@ -72,6 +86,9 @@ public class GamePanel extends JPanel implements Runnable{
      * <p>Handles the keyboard input.</p>
      */
     KeyHandler keyHandler = new KeyHandler();
+    /**
+     * <p>Checks for collisions.</p>
+     */
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     /**
      * <p>Player character.</p>
@@ -128,6 +145,9 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
 
+    /**
+     * <p>Updates the game.</p>
+     */
     public void update() {
         player.update();
     }
