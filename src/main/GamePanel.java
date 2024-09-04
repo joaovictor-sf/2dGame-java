@@ -1,6 +1,7 @@
 package main;
 
 import entities.Player;
+import objetos.SuperObject;
 import tiles.TileManager;
 
 import javax.swing.*;
@@ -90,6 +91,7 @@ public class GamePanel extends JPanel implements Runnable{
      * <p>Checks for collisions.</p>
      */
     public CollisionChecker collisionChecker = new CollisionChecker(this);
+    public AssetSetter assetSetter = new AssetSetter(this);
     /**
      * <p>Player character.</p>
      */
@@ -98,12 +100,17 @@ public class GamePanel extends JPanel implements Runnable{
      * <p>Manages the tiles.</p>
      */
     TileManager tileManager = new TileManager(this);
+    public SuperObject[] objs = new SuperObject[10];//The maximum number of objects that can be created, can be increased if necessary
 
     public GamePanel() {
         setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         setDoubleBuffered(true);// If true, all drawing will be done in the offscreen image buffer. The buffer will then be copied to the screen. This can reduce flicker and improve performance.
         setFocusable(true);// With this, the panel will be able to receive the focus
         addKeyListener(keyHandler);
+    }
+
+    public void setupGame(){
+        assetSetter.setObject();
     }
 
     /**
@@ -156,10 +163,19 @@ public class GamePanel extends JPanel implements Runnable{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         // this is a method from JPanel
-
         Graphics2D g2 = (Graphics2D) g;
 
+        // TILE
         tileManager.draw(g2);//tiles before player
+
+        // OBJECT
+        for (SuperObject obj : objs) {
+            if (obj != null) {
+                obj.draw(g2, this);
+            }
+        }
+
+        // PLAYER
         player.draw(g2);
 
         g2.dispose();// Disposes of this graphics context and releases any system resources that it is using.

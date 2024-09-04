@@ -42,6 +42,34 @@ public class TileManager {
      */
     public void loadMap(String filePath){
         try {
+			InputStream is = getClass().getResourceAsStream(filePath);
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+			int col = 0;
+			int row = 0;
+
+			while(col < gamePanel.maxWorldCols && row < gamePanel.maxWorldRows) {
+				String line = br.readLine();
+
+				String numbers[] = line.split(" ");
+
+				while(col < gamePanel.maxWorldCols) {
+					int num = Integer.parseInt(numbers[col]);
+					mapTileNum[col][row] = num;
+					col++;
+				}
+
+				if(col == gamePanel.maxWorldCols) {
+					col = 0;
+					row++;
+				}
+			}
+
+			br.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+        /*try {
             InputStream inputStream = getClass().getResourceAsStream(filePath);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
@@ -61,7 +89,7 @@ public class TileManager {
             }
         }catch (Exception e){
         	e.printStackTrace();
-        }
+        }*/
     }
 
     /**
@@ -88,15 +116,20 @@ public class TileManager {
     public void draw(Graphics2D g){
     	int worldCol = 0;
 		int worldRow = 0;
+        int tileNum;
+        int worldX;
+        int worldY;
+        int screenX;
+        int screenY;
 
         // Fill the screen with tile 0(grass)
 		while(worldCol < gamePanel.maxWorldCols && worldRow < gamePanel.maxWorldRows) {
-			int tileNum = mapTileNum[worldCol][worldRow];
+			tileNum = mapTileNum[worldCol][worldRow];
 			
-			int worldX = worldCol * gamePanel.TILE_SIZE;
-			int worldY = worldRow * gamePanel.TILE_SIZE;
-			int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
-			int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
+			worldX = worldCol * gamePanel.TILE_SIZE;
+			worldY = worldRow * gamePanel.TILE_SIZE;
+			screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
+			screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
 			
 			g.drawImage(tiles[tileNum].sprite, screenX, screenY, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
 			worldCol++;
